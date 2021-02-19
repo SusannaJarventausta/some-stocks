@@ -35,6 +35,21 @@ export default function AnalyzeData(props) {
     return amount;
   }
 
+  function compareDates(a, b) {
+    if (a.Date < b.Date) {
+      return -1;
+    }
+    if (a.Date > b.Date) {
+      return 1;
+    }
+    return 0;
+  }
+
+  function sortArray(array) {
+    array.sort(compareDates);
+    return array;
+  }
+
   function parseJSON(jsonObject) {
     let tempArray = [];
     let index = 0;
@@ -49,7 +64,7 @@ export default function AnalyzeData(props) {
         let low = removeDollar(element.Low);
 
         tempArray.push({
-          id: index,
+          Id: index,
           Date: date,
           CloseLast: closeLast,
           Volume: volume,
@@ -60,8 +75,8 @@ export default function AnalyzeData(props) {
         index = index + 1;
       }
     }
-    updateStockData(tempArray);
-    updateStockDataTimeRange(tempArray);
+    updateStockData(sortArray(tempArray));
+    updateStockDataTimeRange(sortArray(tempArray));
   }
 
   function parseFile(e) {
