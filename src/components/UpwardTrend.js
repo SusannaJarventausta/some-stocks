@@ -10,7 +10,7 @@ export default function UpwardTrend(props) {
 
   useEffect(() => {
     updateUpwardTrend(upwardTrend());
-  }, []);
+  }, [props.stockData]);
 
   function upwardTrend() {
     let upwardTrendDaysNow = [0]; //[number, startdate, enddate]
