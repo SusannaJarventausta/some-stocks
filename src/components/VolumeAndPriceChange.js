@@ -17,7 +17,6 @@ export default function VolumeAndPriceChange(props) {
     if (a.Volume > b.Volume) {
       return -1;
     }
-
     if (a.Volume < b.Volume) {
       return 1;
     }
