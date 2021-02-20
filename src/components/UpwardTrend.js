@@ -34,14 +34,6 @@ export default function UpwardTrend(props) {
     if (upwardTrendDaysNow[0] > upwardTrend[0]) {
       upwardTrend = [...upwardTrendDaysNow];
     }
-    console.log(
-      'Days: ',
-      upwardTrend[0],
-      ' Start: ',
-      upwardTrend[1],
-      ' End: ',
-      upwardTrend[2]
-    );
     return upwardTrend;
   }
 

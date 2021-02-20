@@ -1,15 +1,19 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import '../styles.css';
 import OpeningPrice from './OpeningPrice';
 import UpwardTrend from './UpwardTrend';
 import VolumeAndPriceChange from './VolumeAndPriceChange';
 import * as Papa from 'papaparse';
 import * as moment from 'moment';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 
 export default function AnalyzeData(props) {
   const [stockFile, setStockFile] = useState('');
   const [stockData, setStockData] = useState([]);
   const [stockDataTimeRange, setStockDataTimeRange] = useState([]);
+  const [startDate, setStartDate] = useState(new Date());
+  const [endDate, setEndDate] = useState(new Date());
 
   function updateStockFile(file) {
     setStockFile(file);
@@ -17,11 +21,54 @@ export default function AnalyzeData(props) {
 
   function updateStockData(data) {
     setStockData(data);
-    //This one should be used to set right array to timerange array according to datepickers
   }
 
   function updateStockDataTimeRange(dataInRange) {
     setStockDataTimeRange(dataInRange);
+    console.log(dataInRange);
+  }
+
+  function updateStartDate(date) {
+    if (date > endDate) {
+      console.log('Start date should be earlier than end date');
+    } else {
+      setStartDate(date);
+      let endingDate = new Date(endDate);
+      updateStockDataTimeRange(filterWithDates(date, endingDate));
+    }
+  }
+
+  function updateEndDate(date) {
+    if (date < startDate) {
+      console.log('End date should be later than starting date');
+    } else {
+      setEndDate(date);
+      let startingDate = new Date(startDate);
+      updateStockDataTimeRange(filterWithDates(startingDate, date));
+    }
+  }
+
+  function filterWithDates(startingDate, endingDate) {
+    let tempArray = [];
+    let index = 0;
+
+    for (let element of stockData) {
+      if (element.Date > endingDate) {
+        return tempArray;
+      } else if (element.Date >= startingDate) {
+        tempArray.push({
+          Id: index,
+          Date: element.Date,
+          CloseLast: element.CloseLast,
+          Volume: element.Volume,
+          Open: element.Open,
+          High: element.High,
+          Low: element.Low,
+        });
+        index = index + 1;
+      }
+    }
+    return tempArray;
   }
 
   function stringToDate(string) {
@@ -98,7 +145,6 @@ export default function AnalyzeData(props) {
     return (
       <div className="AnalyzeData">
         <input type="file" accept=".csv" onChange={onStockFileChange} />
-        <div className="UpwardTrend"></div>
       </div>
     );
   }
@@ -106,8 +152,21 @@ export default function AnalyzeData(props) {
   return (
     <div className="AnalyzeData">
       <input type="file" accept=".csv" onChange={onStockFileChange} />
-      <div>
-        StockData date from parent: {stockDataTimeRange[0].Date.toString()}
+      <div className="datePickers">
+        <div className="datePickersStart">
+          <h3>Start date</h3>
+          <DatePicker
+            selected={startDate}
+            onChange={(date) => updateStartDate(date)}
+          />
+        </div>
+        <div className="datePickersEnd">
+          <h3>End date</h3>
+          <DatePicker
+            selected={endDate}
+            onChange={(date) => updateEndDate(date)}
+          />
+        </div>
       </div>
       <UpwardTrend stockData={stockDataTimeRange}></UpwardTrend>
       <VolumeAndPriceChange

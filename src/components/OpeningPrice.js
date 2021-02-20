@@ -34,7 +34,9 @@ export default function OpeningPrice(props) {
           sma5 = sma5 + smaValues[index - i].ClosePrice;
         }
         sma5 = sma5 / 5;
-        let precentage = parseFloat(((element.Open / sma5) * 100).toFixed(2));
+        let precentage = parseFloat(
+          ((element.Open / sma5) * 100 - 100).toFixed(2)
+        );
         smaValues[index] = {
           Id: element.Id,
           Date: element.Date,
