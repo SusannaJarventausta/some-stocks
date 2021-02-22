@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import '../styles.css';
-import OpeningPrice from './OpeningPrice';
+import OpeningPriceSma5 from './OpeningPriceSma5';
 import UpwardTrend from './UpwardTrend';
 import VolumeAndPriceChange from './VolumeAndPriceChange';
 import * as Papa from 'papaparse';
@@ -25,7 +25,6 @@ export default function AnalyzeData(props) {
 
   function updateStockDataTimeRange(dataInRange) {
     setStockDataTimeRange(dataInRange);
-    console.log(dataInRange);
   }
 
   function updateStartDate(date) {
@@ -200,7 +199,7 @@ export default function AnalyzeData(props) {
       <VolumeAndPriceChange
         stockData={stockDataTimeRange}
       ></VolumeAndPriceChange>
-      <OpeningPrice stockData={stockDataTimeRange}></OpeningPrice>
+      <OpeningPriceSma5 stockData={stockDataTimeRange}></OpeningPriceSma5>
     </div>
   );
 }

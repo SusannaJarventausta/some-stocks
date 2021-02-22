@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import '../styles.css';
 import StockArrayItemSma5 from './StockArrayItemSma5';
 
-export default function OpeningPrice(props) {
+export default function OpeningPriceSma5(props) {
   const [stockArray, setStockArray] = useState([]);
 
   function updateStockArray(array) {
@@ -59,12 +59,17 @@ export default function OpeningPrice(props) {
     }
     return smaValues.sort(compare);
   }
+
   return (
-    <div className="OpeningPrice">
+    <div className="OpeningPriceSma5">
       <h2>List of Opening prices compared to SMA5</h2>
       <div className="stockList">
         <table>
           <tbody>
+            <tr className="Headers">
+              <th>Date</th>
+              <th>Precentages</th>
+            </tr>
             {stockArray.map((item) => (
               <StockArrayItemSma5
                 key={item.Id}

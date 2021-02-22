@@ -42,6 +42,11 @@ export default function VolumeAndPriceChange(props) {
       <div className="stockList">
         <table>
           <tbody>
+            <tr className="Headers">
+              <th>Date</th>
+              <th>Volume</th>
+              <th>Price change</th>
+            </tr>
             {stockArray.map((item) => (
               <StockArrayItemVolume
                 key={item.Id}

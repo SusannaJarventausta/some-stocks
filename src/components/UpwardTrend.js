@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import '../styles.css';
+import DateFormat from './DateFormat';
 
 export default function UpwardTrend(props) {
   const [upward, setUpwardTrend] = useState(['', '', '']);
@@ -39,11 +40,10 @@ export default function UpwardTrend(props) {
 
   return (
     <div className="UpwardTrend">
-      StockData date from child: {props.stockData[0].Date.toString()}
       <h2>Upward trend</h2>
       <p>Days: {upward[0]}</p>
-      <p>From: {upward[1].toString()}</p>
-      <p>To: {upward[2].toString()}</p>
+      <p>From: {DateFormat(upward[1])}</p>
+      <p>To: {DateFormat(upward[2])}</p>
     </div>
   );
 }
