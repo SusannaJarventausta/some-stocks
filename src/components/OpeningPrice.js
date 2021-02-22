@@ -62,15 +62,19 @@ export default function OpeningPrice(props) {
   return (
     <div className="OpeningPrice">
       <h2>List of Opening prices compared to SMA5</h2>
-      <div className="stockVolumeList">
-        {stockArray.map((item) => (
-          <StockArrayItemSma5
-            key={item.Id}
-            Id={item.Id}
-            Date={item.Date}
-            Precentage={item.Precentage}
-          />
-        ))}
+      <div className="stockList">
+        <table>
+          <tbody>
+            {stockArray.map((item) => (
+              <StockArrayItemSma5
+                key={item.Id}
+                Id={item.Id}
+                Date={item.Date}
+                Precentage={item.Precentage}
+              />
+            ))}
+          </tbody>
+        </table>
       </div>
     </div>
   );

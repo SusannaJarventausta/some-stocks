@@ -39,19 +39,23 @@ export default function VolumeAndPriceChange(props) {
   return (
     <div className="VolumeAndPriceChange">
       <h2>List of Volume and price changes</h2>
-      <div className="stockVolumeList">
-        {stockArray.map((item) => (
-          <StockArrayItemVolume
-            key={item.Id}
-            Id={item.Id}
-            Date={item.Date}
-            CloseLast={item.CloseLast}
-            Volume={item.Volume}
-            Open={item.Open}
-            High={item.High}
-            Low={item.Low}
-          />
-        ))}
+      <div className="stockList">
+        <table>
+          <tbody>
+            {stockArray.map((item) => (
+              <StockArrayItemVolume
+                key={item.Id}
+                Id={item.Id}
+                Date={item.Date}
+                CloseLast={item.CloseLast}
+                Volume={item.Volume}
+                Open={item.Open}
+                High={item.High}
+                Low={item.Low}
+              />
+            ))}
+          </tbody>
+        </table>
       </div>
     </div>
   );

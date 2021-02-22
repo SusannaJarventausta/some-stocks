@@ -3,9 +3,9 @@ import '../styles.css';
 
 export default function StockArrayItemSma5(props) {
   return (
-    <div className="StockArrayItemSma5">
-      <p>{props.Date.toString()}</p>
-      <p>{props.Precentage}%</p>
-    </div>
+    <tr className="StockArrayItemSma5">
+      <td>{props.Date.toString()}</td>
+      <td>{props.Precentage}%</td>
+    </tr>
   );
 }

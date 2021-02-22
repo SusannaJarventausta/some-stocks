@@ -7,10 +7,10 @@ export default function StockArrayItemVolume(props) {
     return parseFloat(difference.toFixed(6));
   }
   return (
-    <div className="StockArrayItemVolume">
-      <p>{props.Date.toString()}</p>
-      <p>{props.Volume}</p>
-      <p>{priceChange(props.High, props.Low)}</p>
-    </div>
+    <tr className="StockArrayItemVolume">
+      <td>{props.Date.toString()}</td>
+      <td>{props.Volume}</td>
+      <td>{priceChange(props.High, props.Low)}</td>
+    </tr>
   );
 }
