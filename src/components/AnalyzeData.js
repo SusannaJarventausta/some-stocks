@@ -130,7 +130,7 @@ export default function AnalyzeData(props) {
     Papa.parse(e.target.files[0], {
       header: true,
       delimiter: ', ',
-      complete: function (results) {
+      complete: function(results) {
         parseJSON(results.data);
       },
     });
@@ -141,10 +141,38 @@ export default function AnalyzeData(props) {
     parseFile(e);
   }
 
-  if (stockDataTimeRange == [] || stockDataTimeRange == '') {
+  if (
+    (stockDataTimeRange == [] || stockDataTimeRange == '') &&
+    (stockData == [] || stockData == '')
+  ) {
     return (
       <div className="AnalyzeData">
         <input type="file" accept=".csv" onChange={onStockFileChange} />
+      </div>
+    );
+  } else if (
+    (stockDataTimeRange == [] || stockDataTimeRange == '') &&
+    (stockData != [] || stockData != '')
+  ) {
+    return (
+      <div className="AnalyzeData">
+        <input type="file" accept=".csv" onChange={onStockFileChange} />
+        <div className="datePickers">
+          <div className="datePickersStart">
+            <h3>Start date</h3>
+            <DatePicker
+              selected={startDate}
+              onChange={(date) => updateStartDate(date)}
+            />
+          </div>
+          <div className="datePickersEnd">
+            <h3>End date</h3>
+            <DatePicker
+              selected={endDate}
+              onChange={(date) => updateEndDate(date)}
+            />
+          </div>
+        </div>
       </div>
     );
   }
