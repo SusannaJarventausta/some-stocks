@@ -12,8 +12,8 @@ export default function AnalyzeData(props) {
   const [stockFile, setStockFile] = useState('');
   const [stockData, setStockData] = useState([]);
   const [stockDataTimeRange, setStockDataTimeRange] = useState([]);
-  const [startDate, setStartDate] = useState(new Date());
-  const [endDate, setEndDate] = useState(new Date());
+  const [startDate, setStartDate] = useState(new Date().setHours(0, 0, 0, 0));
+  const [endDate, setEndDate] = useState(new Date().setHours(0, 0, 0, 0));
 
   function updateStockFile(file) {
     setStockFile(file);
@@ -141,12 +141,19 @@ export default function AnalyzeData(props) {
   }
 
   if (
-    (stockDataTimeRange == [] || stockDataTimeRange == '') &&
-    (stockData == [] || stockData == '')
+    (stockDataTimeRange == [] ||
+      stockDataTimeRange == '' ||
+      stockDataTimeRange == undefined) &&
+    (stockData == [] || stockData == '' || stockData == undefined)
   ) {
     return (
       <div className="AnalyzeData">
-        <input type="file" accept=".csv" onChange={onStockFileChange} />
+        <input
+          className="chooseFile"
+          type="file"
+          accept=".csv"
+          onChange={onStockFileChange}
+        />
       </div>
     );
   } else if (
@@ -155,7 +162,12 @@ export default function AnalyzeData(props) {
   ) {
     return (
       <div className="AnalyzeData">
-        <input type="file" accept=".csv" onChange={onStockFileChange} />
+        <input
+          className="chooseFile"
+          type="file"
+          accept=".csv"
+          onChange={onStockFileChange}
+        />
         <div className="datePickers">
           <div className="datePickersStart">
             <h3>Start date</h3>
@@ -178,11 +190,17 @@ export default function AnalyzeData(props) {
 
   return (
     <div className="AnalyzeData">
-      <input type="file" accept=".csv" onChange={onStockFileChange} />
+      <input
+        className="chooseFile"
+        type="file"
+        accept=".csv"
+        onChange={onStockFileChange}
+      />
       <div className="datePickers">
         <div className="datePickersStart">
           <h3>Start date</h3>
           <DatePicker
+            id="datePickerStart"
             selected={startDate}
             onChange={(date) => updateStartDate(date)}
           />
@@ -190,6 +208,7 @@ export default function AnalyzeData(props) {
         <div className="datePickersEnd">
           <h3>End date</h3>
           <DatePicker
+            id="datePickerEnd"
             selected={endDate}
             onChange={(date) => updateEndDate(date)}
           />

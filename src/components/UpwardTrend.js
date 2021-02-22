@@ -40,10 +40,19 @@ export default function UpwardTrend(props) {
 
   return (
     <div className="UpwardTrend">
-      <h2>Upward trend</h2>
-      <p>Days: {upward[0]}</p>
-      <p>From: {DateFormat(upward[1])}</p>
-      <p>To: {DateFormat(upward[2])}</p>
+      <h2>Longest upward trend</h2>
+      <div className="upwardData">
+        <p className="inline">Days: </p>
+        <p className="textData">{upward[0]}</p>
+      </div>
+      <div className="upwardData">
+        <p className="inline">From: </p>
+        <p className="textData">{DateFormat(upward[1])}</p>
+      </div>
+      <div className="upwardData">
+        <p className="inline">To: </p>
+        <p className="textData">{DateFormat(upward[2])}</p>
+      </div>
     </div>
   );
 }

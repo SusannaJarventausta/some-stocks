@@ -38,7 +38,7 @@ export default function VolumeAndPriceChange(props) {
 
   return (
     <div className="VolumeAndPriceChange">
-      <h2>List of Volume and price changes</h2>
+      <h2>Volyme and Price changes</h2>
       <div className="stockList">
         <table>
           <tbody>

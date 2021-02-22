@@ -62,7 +62,7 @@ export default function OpeningPriceSma5(props) {
 
   return (
     <div className="OpeningPriceSma5">
-      <h2>List of Opening prices compared to SMA5</h2>
+      <h2>Opening price compared to SMA5</h2>
       <div className="stockList">
         <table>
           <tbody>
