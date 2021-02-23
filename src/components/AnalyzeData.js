@@ -137,15 +137,12 @@ export default function AnalyzeData(props) {
 
   function onStockFileChange(e) {
     updateStockFile(e.target.files[0]);
-    parseFile(e);
+    if (e.target.files[0] != undefined) {
+      parseFile(e);
+    }
   }
 
-  if (
-    (stockDataTimeRange == [] ||
-      stockDataTimeRange == '' ||
-      stockDataTimeRange == undefined) &&
-    (stockData == [] || stockData == '' || stockData == undefined)
-  ) {
+  if (stockFile == undefined || stockFile == '') {
     return (
       <div className="AnalyzeData">
         <input
@@ -172,6 +169,7 @@ export default function AnalyzeData(props) {
           <div className="datePickersStart">
             <h3>Start date</h3>
             <DatePicker
+              id="datePickerStart"
               selected={startDate}
               onChange={(date) => updateStartDate(date)}
             />
@@ -179,6 +177,7 @@ export default function AnalyzeData(props) {
           <div className="datePickersEnd">
             <h3>End date</h3>
             <DatePicker
+              id="datePickerEnd"
               selected={endDate}
               onChange={(date) => updateEndDate(date)}
             />
@@ -215,10 +214,12 @@ export default function AnalyzeData(props) {
         </div>
       </div>
       <UpwardTrend stockData={stockDataTimeRange}></UpwardTrend>
-      <VolumeAndPriceChange
-        stockData={stockDataTimeRange}
-      ></VolumeAndPriceChange>
-      <OpeningPriceSma5 stockData={stockDataTimeRange}></OpeningPriceSma5>
+      <div className="listContainer">
+        <VolumeAndPriceChange
+          stockData={stockDataTimeRange}
+        ></VolumeAndPriceChange>
+        <OpeningPriceSma5 stockData={stockDataTimeRange}></OpeningPriceSma5>
+      </div>
     </div>
   );
 }

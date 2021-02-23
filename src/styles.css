@@ -3,9 +3,28 @@
   --darkGray: #767676;
 }
 
+.VolumeAndPriceChange {
+  text-align: center;
+  display: inline-block;
+  padding: 2vh;
+}
+
+.OpeningPriceSma5 {
+  text-align: center;
+  display: inline-block;
+  padding: 2vh;
+}
+
 .stockList {
   overflow-y: scroll;
   height: 30vh;
+  text-align: center;
+  display: inline-block;
+}
+
+.listContainer {
+  display: flex;
+  justify-content: space-evenly;
 }
 
 .chooseFile {
@@ -19,12 +38,29 @@
   padding: 2vh;
 }
 
+.volumeTable {
+  margin: 0 auto;
+}
+
 h2 {
   font-size: calc(16px + 0.7vw);
 }
 
 h3 {
   font-size: calc(16px + 0.2vw);
+}
+
+th {
+  padding: 1vh;
+  margin: 0;
+  font-size: calc(16px + 0.1vw);
+}
+
+td {
+  font-size: calc(16px + 0.1vw);
+  padding: 1vh;
+  font-family: Andale Mono, monospace;
+  margin: 0;
 }
 
 .upwardData {
