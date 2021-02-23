@@ -12,7 +12,7 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 When the app is running you can use it by providing a csv file for the input section.\
 The csv file should be formated like [This example file](https://www.nasdaq.com/api/v1/historical/AAPL/stocks/2020-01-20/2021-01-20).\
-The file needs to have data in all columns for the app to analyze it.\
+The file needs to have data for all columns for the app to analyze it.\
 Here is an example of the correctly formatted source data:\
 “Date, Close/Last, Volume, Open, High, Low\
 01/19/2021, $127.83, 90757330, $127.78, $128.71, $126.938”
