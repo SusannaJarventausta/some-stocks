@@ -128,7 +128,7 @@ export default function AnalyzeData(props) {
   function parseFile(e) {
     Papa.parse(e.target.files[0], {
       header: true,
-      delimiter: ', ',
+      delimitersToGuess: [', ', ','],
       complete: function(results) {
         parseJSON(results.data);
       },
